@@ -1,0 +1,30 @@
+{% extends 'layout/main.twig' %}
+
+{% block pageContent %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12  ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Voeg bericht toe</h2>
+                    <div class="clearfix"></div>
+                </div>
+                {% include 'partials/errors.twig' %}
+                <form action="/kanaal/{{ id }}/voegbericht" method="post" enctype="multipart/form-data">
+                    <div class="x_content">
+                        <dl>
+                            <dt>Titel</dt>
+                            <input type="text" class="form-control" value="{{ titel }}" name="titel">
+
+                            <dt>Bericht</dt>
+                            <textarea type="text" class="form-control" name="bericht">{{ bericht }}</textarea>
+
+                        </dl>
+                        <input type="hidden" name="moduleAction" value="voegtoe"/>
+                        <button type="submit" class="btn btn-outline-primary btn-danger btn-block col-lg-4">Deel bericht
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

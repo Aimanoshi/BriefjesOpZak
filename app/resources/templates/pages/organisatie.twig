@@ -1,0 +1,79 @@
+{% extends 'layout/main.twig' %}
+
+{% block pageContent %}
+        {% include 'partials/errors.twig' %}
+        {% if rol == 'user' %}
+            <div class="x_title">
+                <h2>Zoek organisatie</h2>
+            </div>
+            <form method="GET" class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 form1">
+                <div class="form-group col">
+                    <label for="term">Naam</label>
+                    <input type="text" class="form-control" name="term" id="term" placeholder="Term" value="{{ term }}">
+                </div>
+
+                <div class="form-group col">
+                    <label for="zip">Postcode</label>
+                    <select id="zip" class="form-control custom-select" name="zip">
+                        <option value="">Choose Postcode</option>
+                        {% for zip in zips %}
+                            <option value="{{ zip.postcode }}">{{ zip.postcode }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <input type="hidden" name="moduleAction" value="search-SchoolClub"/>
+                    <input type="submit" class="btn btn-outline-primary color" value="Search" name="submit"/>
+                </div>
+            </form>
+        {% endif %}
+    {% if organisaties|length == 0 %}
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                <p>Geen organisations gevonden.</p>
+        </div>
+    {% else %}
+        <div class="container-fluid">
+            <div class="row example-basic">
+                <div class="col-md-12 example-title">
+                    {% if rol == 'admin' %}
+                        <h2>Mijn organisaties</h2>
+                    {% else %}
+                        <h2>Lijst van alle organisaties</h2>
+                    {% endif %}
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Adres</th>
+                            <th>Postcode</th>
+                            <th>Info</th>
+                        </tr>
+                        </thead>
+                        {% if organisaties|length > 0 %}
+                            <tbody>
+                            {% for organisatie in organisaties %}
+                                <tr>
+                                    <td>{{ organisatie.name }}</td>
+                                    <td>{{ organisatie.address }}</td>
+                                    <td>{{ organisatie.postcode }}</td>
+                                    <td class="last">
+                                        <a href="/organisatie/{{ organisatie.Id }}/detail">detail</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        {% endif %}
+                    </table>
+                </div>
+                {% if rol == 'admin' %}
+                    <a href="/organisatie/create" class="btn btn-danger col-xs-offset-1 col-sm-2 col-sm-offset-2">
+                        Voeg organisatie toe
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

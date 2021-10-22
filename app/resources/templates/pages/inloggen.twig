@@ -1,0 +1,46 @@
+{% extends 'layout/mainAuth.twig' %}
+
+{% block pageContent %}
+    <body>
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-8 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <figure>
+                                <img src="/images/foto2.0.jpg" alt="Illustratie met een vrouw een een takenlijst">
+                                <div class="centered"><h3>WELKOM BIJ BRIEF OP ZAK</h3></div>
+                            </figure>
+                        </div>
+                        {% include 'partials/errors.twig' %}
+                        <form action="/login" method="post" enctype="multipart/form-data">
+
+                            <!--Email-->
+                            <div class="form-group">
+                                <label>Email<span>*</span></label>
+                                <input type="text" class="form-control" value="{{ email }}" name="email"
+                                       placeholder="Email">
+                            </div>
+
+                            <!--Wachtwoord-->
+                            <div class="form-group">
+                                <label>Wachtwoord<span>*</span></label>
+                                <input type="password" class="form-control" value="{{ password }}" name="password"
+                                       placeholder="Wachtwoord">
+                            </div>
+
+                            <!--submit button-->
+                            <input type="hidden" name="moduleAction" value="login"/>
+                            <button type="submit" class="btn btn-outline-primary color btn-block" value="Login in"
+                                    name="submit">Login in
+                            </button>
+                        </form>
+                        <p class="text-center">Nog geen account ?<a href="/register"> Registreer je</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

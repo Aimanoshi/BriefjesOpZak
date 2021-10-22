@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>briefjes op zak</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<script src="https://use.typekit.net/bkt6ydm.js"></script> <!-- PAS OP -->
+<script>try{Typekit.load({ async: true });}catch(e){}</script> <!-- PAS OP -->
+<header class="example-header">
+    {% include 'layout/parts/nav.twig' %}
+</header>
+
+    <!-- page content -->
+    {% block pageContent %}
+        <p>This is the pageContent</p>
+    {% endblock %}
+    <!-- /page content -->
+
+{% include 'layout/parts/footer.twig' %}
+<script src="/vendors/jquery/dist/jquery.min.js"></script>
+<script src="/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

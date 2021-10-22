@@ -1,0 +1,54 @@
+{% extends 'layout/main.twig' %}
+
+{% block pageContent %}
+    <div class="container-fluid">
+        <div class="row example-basic">
+            <div class="col-md-12 example-title">
+                    <h2>Verzoeken</h2>
+            </div>
+            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                <table class="table">
+                    {% if users|length > 0 %}
+                        <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.wie }} wilt zich abonneren op {{ user.channelname }}</td>
+                            <td class="last">
+                                <form action="" method="POST" class="form-horizontal">
+                                    <input type="hidden" name="moduleAction" value="accept" />
+                                    <input type="hidden" name="user_id" value="{{ user.userid }}" />
+                                    <input type="hidden" name="channel_id" value="{{ user.channelid }}" />
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-danger" id="btn-accept">
+                                                <i class="fa fa-btn fa-trash"></i>accepteren
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="" method="POST" class="form-horizontal">
+                                    <input type="hidden" name="moduleAction" value="delete" />
+                                    <input type="hidden" name="user_id" value="{{ user.userid }}" />
+                                    <input type="hidden" name="channel_id" value="{{ user.channelid }}" />
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-danger" id="btn-delete">
+                                                <i class="fa fa-btn fa-trash"></i>weigeren
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    {% else %}
+                        <p>Geen nieuwe verzoeken</p>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

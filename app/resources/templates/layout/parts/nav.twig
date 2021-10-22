@@ -1,0 +1,11 @@
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/organisatie">Organisaties</a></li>
+        <li><a href="/kanaal">Kanalen</a></li>
+        {% if rol == 'admin' %}
+        <li><a href="/abonnees">Verzoeken</a></li>
+        {% endif %}
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>

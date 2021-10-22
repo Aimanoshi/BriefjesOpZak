@@ -1,0 +1,7 @@
+{% if formErrors %}
+    <div class="card bg-danger text-center x_content">
+        {% for error in formErrors %}
+            <ul class="font-weight-light h6 ">{{ error }}</ul>
+        {% endfor %}
+    </div>
+{% endif %}

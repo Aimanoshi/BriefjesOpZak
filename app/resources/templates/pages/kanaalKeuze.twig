@@ -1,0 +1,40 @@
+{% extends 'layout/main.twig' %}
+
+{% block pageContent %}
+    {% include 'partials/errors.twig' %}
+
+    {% if channels|length == 0 %}
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+            <p>Geen Kanaal gevonden voor deze organistaie.</p>
+        </div>
+    {% else %}
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        <form action="/register/kies_kanaal" method="POST">
+
+        <table class="table">
+        <thead>
+        <tr>
+            <th>Keuze</th>
+            <th>Naam</th>
+            <th>Omschrijving</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for channelGroep in channels %}
+            {% for channel in channelGroep %}
+                <tr>
+                    <td scope="row"><input type="checkbox" name="kanaal[]" value="{{ channel.Id }}"></td>
+                    <td hidden>{{ channel.Id }}</td>
+                    <td class="">{{ channel.name }}</td>
+                    <td class="">{{ channel.description }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    </tbody>
+    </table>
+    <input type="hidden" name="moduleAction" value="verder-SchoolClub"/>
+    <input type="submit" class="btn btn-secondary mx-auto w-100" value="Verder" name="submit"/>
+    </form>
+    </div>
+{% endblock %}

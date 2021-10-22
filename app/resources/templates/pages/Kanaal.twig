@@ -1,0 +1,60 @@
+{% extends 'layout/main.twig' %}
+
+{% block pageContent %}
+    <div class="container-fluid">
+        <div class="row example-basic">
+            <div class="col-md-12 example-title">
+                {% if rol == 'user' %}
+                    <h2>Geabonneerde kanalen</h2>
+                {% else %}
+                    <h2>Kanalen van mijn organisaties</h2>
+                {% endif %}
+            </div>
+            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Naam</th>
+                        <th>Organisatie</th>
+                        <th>Actie</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    {% if kanalen|length > 0 %}
+                        <tbody>
+                        {% for kanaal in kanalen %}
+                        <td>{{ kanaal.name }}</td>
+                        <td>{{ kanaal.organisation_name }}</td>
+                        <td class="last">
+                            <a href="kanaal/{{ kanaal.channels_Id }}/berichten">berichten</a>
+                        </td>
+                        {% if rol == 'user' %}
+                            <td class="last">
+                                <form action="" method="POST" class="form-horizontal">
+                                    <input type="hidden" name="moduleAction" value="delete" />
+                                    <input type="hidden" name="channel_id" value="{{ kanaal.channels_Id }}" />
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-danger" id="btn-delete">
+                                                <i class="fa fa-btn fa-trash"></i>Kanaal verlaten
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                        {% endif %}
+
+                        {% if rol == 'admin' %}
+                            <td class="last">
+                                <a href="kanaal/{{ kanaal.channels_Id }}/voegbericht">voeg bericht toe</a>
+                            </td>
+                        {% endif %}
+                        <tr>
+                            {% endfor %}
+                        </tbody>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

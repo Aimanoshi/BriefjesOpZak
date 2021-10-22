@@ -1,0 +1,41 @@
+{% extends 'layout/main.twig' %}
+
+{% block pageContent %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12  ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{ kanaal.name }}</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <dl>
+                        <dt>Naam</dt>
+                        <dd>{{ kanaal.name }}</dd>
+
+                        <dt>Organistie</dt>
+                        <dd>{{ kanaal.organisation_name }}</dd>
+
+                        <dt>Beschrijving</dt>
+                        <dd>{{ kanaal.description }}</dd>
+                    </dl>
+                    <div class="form-group">
+                        <div class="col-md-6 offset-md-3">
+                            {% if rol == 'user' %}
+                                <a href="/organisatie/kanaal/{{ kanaal.Id }}/aboneer" class="btn btn-danger">
+                                    Abonneren
+                                </a>
+                            {% endif %}
+                            {% if rol == 'admin' %}
+                                <a href="/organisatie/kanaal/{{ kanaal.Id }}/verwijder" class="btn btn-danger">
+                                    Verwijder
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

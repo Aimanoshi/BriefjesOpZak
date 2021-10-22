@@ -1,0 +1,37 @@
+{% extends 'layout/main.twig' %}
+
+{% block pageContent %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12  ">
+            <div class="x_panel">
+                        {% include 'partials/errors.twig' %}
+
+                        <form action="/organisatie/{{ id }}/kanaal/create" method="post" enctype="multipart/form-data">
+                            <div class="x_content">
+
+                            <!--hidden id -->
+                            <input type="hidden" name="id" value="{{ id }}"/>
+
+                            <!--Naam-->
+                            <div class="form-group">
+                                <label>Naam<span>*</span></label>
+                                <input type="text" class="form-control" value="{{ naam }}" name="naam"
+                                       placeholder="naam">
+                            </div>
+
+                            <!--Omschrijving-->
+                            <div class="form-group">
+                                <label>Omschrijving<span>*</span></label>
+                                <textarea type="te" class="form-control" name="omschrijving" placeholder="Omschrijving"
+                                >{{ omschrijving }}</textarea>
+                            </div>
+
+                            <!--submit button-->
+                            <input type="hidden" name="moduleAction" value="VoegToe"/>
+                            <button type="submit" class="btn btn-outline-primary color btn-block btn-danger">Voeg Toe</button>
+                            </div>
+                        </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <title>briefjes op zak</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+</head>
+<body>
+{% include '/layout/parts/nav.twig' %}
+<header id="start">
+    <div>
+        <h1>WELKOM BIJ<br> BRIEF OP ZAK</h1>
+        {% if user == false %}
+        <a href="/login">Inloggen</a>
+        <a href="/register">Registreren</a>
+        {% endif %}
+    </div>
+
+    <figure>
+        <img src="images/header.png" alt="foto van header">
+    </figure>
+</header>
+<blockquote>
+    <p>Medewerkers van basisscholen, sportclubs en jeugdbewegingen bereiken samen de ouders in één gezamenlijke app waarop ze hun activiteiten, brieven, foto's en video's delen.</p>
+</blockquote>
+<main>
+    <div>
+        <section>
+            <div>
+                <h2>Heb je nog geen account bij ons.</h2>
+                <ul>
+                    <li>Altijd op de hoogte</li>
+                    <li>Je raakt nooit een brief meer kwijt</li>
+                    <li>Je kinderen kunnen nu nooit hun brief vergeten geven</li>
+                    <li>Better voor de milieu</li>
+                </ul>
+                {% if user == false %}
+                <a href="/register" class=".niet">registreer nu</a>
+                {% endif %}
+            </div>
+            <figure>
+                <img src="images/items.png" alt="foto van vraaglijsten">
+            </figure>
+        </section>
+    </div>
+    <blockquote>
+        <p>Basisscholen, sportclubs en jeugdbewegingen  versterken elkaars oudercommunicatie via BriefOpZak. Enkel door samen te werken geraken ouders de briefjes nooit meer kwijt!</p>
+    </blockquote>
+</main>
+{% include 'layout/parts/footer.twig' %}
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends 'layout/main.twig' %}
+
+{% block pageContent %}
+    <div>
+        {% include 'partials/errors.twig' %}
+        <form method="GET" class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 form1">
+            <div class="form-group col">
+                <label for="term">Term</label>
+                <input type="text" class="form-control" name="term" id="term" placeholder="Term" value="{{ term }}">
+            </div>
+
+            <div class="form-group col">
+                <label for="zip">Postcode</label>
+                <select id="zip" class="form-control custom-select" name="zip">
+                    <option value="">Choose Postcode</option>
+                    {% for zip in zips %}
+                        <option value="{{ zip.postcode }}">{{ zip.postcode }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <input type="hidden" name="moduleAction" value="search-SchoolClub"/>
+                <input type="submit" class="btn btn-outline-primary color" value="Search" name="submit"/>
+            </div>
+        </form>
+    </div>
+    {% if organisations|length == 0 %}
+        <p>Geen organisations gevonden.</p>
+    {% else %}
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        <form action="" method="POST"> <!-- action <?php echo $_SERVER['PHP_SELF']; ?> -->
+
+        <table class="table">
+        <thead>
+        <tr>
+            <th>Keuze</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Postcode</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for organisation in organisations %}
+            <tr>
+                <td scope="row"><input type="checkbox" name="organisations[]" value="{{ organisation.Id }}"></td>
+                <th hidden>{{ organisation.Id }}</th>
+                <td class="">{{ organisation.name }}</td>
+                <td class="">{{ organisation.address }}</td>
+                <td class="">{{ organisation.postcode }}</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+    </table>
+
+    <input type="hidden" name="moduleActionPost" value="verder-SchoolClub"/>
+    <input type="submit" class="btn btn-secondary mx-auto w-100" value="Verder" name="submit"/>
+    </form>
+    </div>
+{% endblock %}
